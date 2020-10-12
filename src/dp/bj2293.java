@@ -7,26 +7,23 @@ public class bj2293 {
         n = sc.nextInt();
         k = sc.nextInt();
 
-        int[] num = new int[n];
+        int[] num = new int[n+1];
 
-        for(int i=0;i<n;i++){
+        for(int i=1;i<=n;i++){
             num[i] = sc.nextInt();
         }
 
         long[] dp = new long[k+1];
         dp[0] = 1;
 
-        for(int i=1;i<=k;i++){
-
-            for(int j=0;j<n;j++){
-                if(num[j]<=i){
-                    dp[i] += dp[i-num[j]];
-                }
-
+        for(int i=1;i<=n;i++){
+            for(int j=num[i];j<=k;j++){
+                dp[j] += dp[j-num[i]];
             }
-            //System.out.println(dp[i]);
         }
 
         System.out.println(dp[k]);
+
+
     }
 }
